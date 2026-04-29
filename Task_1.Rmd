@@ -55,3 +55,32 @@ data |> ggplot(aes(x=strain,y=stress)) + geom_smooth() + geom_point()
 We can see that there is a plateau at around strain 0.005-0.0075.
 
 This gives us a ball park value where we expect a breakpoint,
+
+#### Fit a one-breakpoint Bayesian piecewise linear model
+
+I will use the package mcp (https://lindeloev.github.io/mcp/) in order to perform this regression
+
+##### install and load package and check it is working
+
+```{r}
+
+install.packages("mcp")
+
+library(mcp)
+
+### This is the example off of the tutorial
+
+
+# Define the model
+model = list(
+  response ~ 1,  # plateau (int_1)
+  ~ 0 + time,    # joined slope (time_2) at cp_1
+  ~ 1 + time     # disjoined slope (int_3, time_3) at cp_2
+)
+
+# Get example data and fit it
+ex = mcp_example("demo")
+fit = mcp(model, data = ex$data)
+
+```
+Note you will need to install JAGS follow the URL provided (https://sourceforge.net/projects/mcmc-jags/)
