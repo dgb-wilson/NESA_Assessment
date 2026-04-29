@@ -113,7 +113,47 @@ plot(fit)
 ```
 #### Including priors
 
+I have implemented below hierarchical priors as specified in the task
 
+```{r}
+
+model <- list(
+  stress ~ 0 + strain,        # Segment 1: beta_1 * x (no intercept)
+         ~ 1 + strain         # Segment 2: beta_2 * (x - tau)
+)
+
+prior <- list(
+
+  # Hyperpriors
+  mu_beta ~ 30000,
+  sigma_beta ~ 20000 * sqrt( dinvgamma(4,13.12)),
+
+  # Hierarchical coefficients
+  strain_1 ~ dnorm(mu_beta, sigma_beta),
+  strain_2 ~ dnorm(mu_beta, sigma_beta),
+
+  # Change point
+  cp_1 ~ dunif(min(aluminium_data$strain),
+               max(aluminium_data$strain)),
+
+  # Observation noise
+  sigma ~ dunif(0, 100)
+)
+
+fit <- mcp(model, data = aluminium_data, prior = prior)
+
+plot(fit)
+
+```
+#### Viewing the fit paramets
+
+
+```{r}
+summary(fit)
+
+```
+
+We see that the estimated mean breakpoint is 0.0042. Close to our visual estimate of below 0.005.
 
 #### How I would expand this model
 

@@ -34,3 +34,8 @@ fit <- mcp(model, data = aluminium_data, prior = prior)'
 It told me I was missing the response variable in the second formula.
 
 It turns out this was classic wrong answer from AI.
+
+
+### Prompt 3
+
+can i get this prior <- list( int_1 ~ dnorm(0, 10), strain_1 ~ dnorm(0, 10), strain_2 ~ dnorm(0, 10), cp_1 ~ dunif(min(aluminium_data$strain), max(aluminium_data$strain)), sigma ~ dunif(0, 100) ) with hierarcichal priors
