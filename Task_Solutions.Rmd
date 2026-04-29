@@ -45,14 +45,14 @@ In your solution, explain how you approached the implementation of the model and
 
 #### Visualise the data
 ```{r}
-data <- read.csv("Data/aluminium.csv")
+aluminium_data <- read.csv("Data/aluminium.csv")
 
 library(ggplot2)
 
-data |> ggplot(aes(x=strain,y=stress)) + geom_smooth() + geom_point()
+aluminium_data |> ggplot(aes(x=strain,y=stress)) + geom_smooth() + geom_point()
 
 ```
-We can see that there is a plateau at around strain 0.005-0.0075.
+We can see that there is a kink at around strain 0.005
 
 This gives us a ball park value where we expect a breakpoint,
 
@@ -83,11 +83,32 @@ model = list(
 # Get example data and fit it
 ex = mcp_example("demo")
 fit = mcp(model, data = ex$data)
-
 plot(fit)
+
 
 ```
 Note you will need to install JAGS follow the URL provided (https://sourceforge.net/projects/mcmc-jags/)
 
+#### Setting up the model
 
+I found a tutorial on modeling the slope change points (https://lindeloev.github.io/mcp/articles/formulas.html#modeling-slope-change-points)
+
+
+
+```{r}
+
+model <- list(
+  stress ~ 0 + strain,        # Segment 1: beta_1 * x (no intercept)
+         ~ 1 + strain  # Segment 2: beta_2 * (x - tau)
+)
+
+prior <- list(
+  cp_1 ~ dunif(min(aluminium_data$strain), max(aluminium_data$strain))
+)
+
+fit <- mcp(model, data = aluminium_data, prior = prior)
+
+plot(fit)
+
+```
 
