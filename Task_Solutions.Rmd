@@ -111,4 +111,12 @@ fit <- mcp(model, data = aluminium_data, prior = prior)
 plot(fit)
 
 ```
+#### Including priors
 
+
+
+#### How I would expand this model
+
+If the data was much larger on the order of gigabytes. I would consider stratified sampling from the stress and strain data. I would bin the strain and sample datapoints from these bins. I would check visually that  the overall shape has not been affected by my binning. I would repeat sampling and check the fits as a sensitivity test.
+
+For much larger numbers of breakpoints. I would build code that automated the construction of the formula that is required for the model. It would not be hard coded.
