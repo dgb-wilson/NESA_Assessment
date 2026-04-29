@@ -58,7 +58,9 @@ This gives us a ball park value where we expect a breakpoint,
 
 #### Fit a one-breakpoint Bayesian piecewise linear model
 
-I will use the package mcp (https://lindeloev.github.io/mcp/) in order to perform this regression
+I will use the package mcp (https://lindeloev.github.io/mcp/) in order to perform this regression.
+
+The docs can be found here (https://cloud.r-project.org/web/packages/mcp/mcp.pdf)
 
 ##### install and load package and check it is working
 
@@ -82,5 +84,10 @@ model = list(
 ex = mcp_example("demo")
 fit = mcp(model, data = ex$data)
 
+plot(fit)
+
 ```
 Note you will need to install JAGS follow the URL provided (https://sourceforge.net/projects/mcmc-jags/)
+
+
+
