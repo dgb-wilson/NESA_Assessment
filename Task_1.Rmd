@@ -1,0 +1,16 @@
+---
+title: "Task Solutions"
+output: html_document
+---
+
+## Task 1
+**1.** Let $X$ be a complex torus of dimension $17$ that contains an abelian variety of dimension $10$. Recall that the algebraic dimension of $X$ is the transcendence degree of the field of meromorphic functions of $X$ over $\mathbb{C}$. What is the smallest possible value of the algebraic dimension of $X$?
+
+The following paper may be helpful for Task 1: <https://doi.org/10.48550/arXiv.2106.10308>
+
+### Solution
+
+The linked paper, cites in its Abstract. 'It is known that a “very general” complex torus T of dimension dim(T) =
+g ≥ 2 has the algebraic dimension a(T) = 0.'
+
+We have $X$ a complex torus of dimension $17$. If we can be sure that the constraint 'abelian variety of dimension $10$' does not render the Torus as no longer 'very general'. Then sthe smallest algebraic dimension can be 0.
