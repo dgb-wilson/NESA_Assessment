@@ -1,0 +1,13 @@
+---
+title: "What AI tools did I use"
+output: html_document
+---
+
+In order to get code using the mcp() package I queried ChatGPT
+
+with the prompt
+
+
+'Using the R package mcp create a linear model with one breakpoint. The first model is beta_1 x The second model is beta_1 * tau + beta_2 * (x - tau) we want to estimate tau'
+
+It provided some sample code that I copied into RStudio and adapted for our purposes.
